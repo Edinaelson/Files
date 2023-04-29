@@ -2,13 +2,27 @@ package org.example;
 
 public class Colors {
 
+    static String resetColor = "\u001B[0m";
+
     public static void ukraine(){
         String redColor = "\u001B[31m";
         String blueColor = "\u001B[34m";
         String yellowColor = "\u001B[33m";
-
         String resetColor = "\u001B[0m";
+
         System.out.println(blueColor + "Ukraine" + yellowColor + "Peace"+ resetColor);
+    }
+
+    public static void greenColor(String name){
+        String greenColors = "\u001B[32m";
+
+        System.out.println(greenColors + name + resetColor);
+    }
+
+    public static void blueColor(String name){
+        String blueColor = "\u001B[34m";
+
+        System.out.println(blueColor + name + resetColor);
     }
 
 }
