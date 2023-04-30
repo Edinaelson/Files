@@ -222,4 +222,28 @@ public class Files {
         return null;
     }
 
+    public static void zerarCont(){
+        Files.contImg = 0;
+        Files.contDoc = 0;
+        Files.contVid = 0;
+        Files.contMusic = 0;
+        Files.contPrograms = 0;
+    }
+
+    public static void imprimirContagem(){
+        System.out.println("quantidade imagens: " + Files.contImg);
+        System.out.println("quantidade documentos: " + Files.contDoc);
+        System.out.println("quantidade videos: " + Files.contVid);
+        System.out.println("quantidade musicas: " + Files.contMusic);
+        System.out.println("quantidade programas: " + Files.contPrograms);
+    }
+
+    public static void start(){
+        Files.moveImg();
+        Files.moveDocs();
+        Files.moveVides();
+        Files.moveProgram();
+        Files.moveMusic();
+    }
+
 }
