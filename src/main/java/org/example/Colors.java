@@ -25,4 +25,22 @@ public class Colors {
         System.out.println(blueColor + name + resetColor);
     }
 
+    public static void cyanColor(String name){
+        String cyanColor = "\u001B[36m";
+
+        System.out.println(cyanColor + name + resetColor);
+    }
+
+    public static void redColor(String name){
+        String redColor = "\u001B[31m";
+
+        System.out.println(redColor + name + resetColor);
+    }
+
+    public static void magentaColor(String name){
+        String magentaColor = "\u001B[35m";
+
+        System.out.println(magentaColor + name + resetColor);
+    }
+
 }

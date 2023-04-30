@@ -33,23 +33,39 @@ public class Main extends JFrame{
 
     public static void main(String[] args){
 
-        Main main = new Main();
-        main.setVisible(true);
+//        Main main = new Main();
+//        main.setVisible(true);
 
         //Files.files();
         //Files.count();
         //Files.moveImg();
 
-        for (int i = 0;i<=Files.contImg;i++){
-            main.updateTextArea(Files.moveImg());
-        }
+//        for (int i = 0;i<=Files.contImg;i++){
+//            main.updateTextArea(Files.moveImg());
+//        }
+//        Thread thread1 = new Thread(() -> {
+//            Files.moveImg();
+//        });
+//
+//        Thread thread2 = new Thread(() -> {
+//            Files.moveDocs();
+//        });
+//
+//        thread1.start();
+//        thread2.start();
 
-//        Files.moveImg();
-//        Files.moveDocs();
+        Files.moveImg();
+        Files.moveDocs();
+        Files.moveVides();
+        Files.moveProgram();
+        Files.moveMusic();
+
         System.out.println("quandidade imagens: " + Files.contImg);
-        System.out.println("quanditdade de documentos: " + Files.contDoc);
+        System.out.println("quanditdade documentos: " + Files.contDoc);
+        System.out.println("quanditdade videos: " + Files.contVid);
+        System.out.println("quanditdade musicas: " + Files.contMusic);
+        System.out.println("quanditdade programas: " + Files.contPrograms);
         Colors.ukraine();
-
 
     }
 }
