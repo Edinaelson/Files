@@ -5,91 +5,66 @@ import java.util.List;
 
 public class Extension {
 
-    public static String img(int i) {
-        //Criando a lista de extensões de imagens
-        List<String> ex = new ArrayList<>();
+    public static final String[] SUPPORTED_EXTENSIONS_IMG = {
+        ".jpg",".jpeg",".png",".psd",".svg",".gif",".bmp",".tiff",".webp",
+        ".ico"
+    };
 
-        ex.add(".jpg");
-        ex.add(".jpeg");
-        ex.add(".png");
-        ex.add(".psd");
-        ex.add(".svg");
-        ex.add(".gif");
-        ex.add(".bmp");
-        ex.add(".tiff");
-        ex.add(".webp");
-        ex.add(".ico");
-
-        return ex.get(i);
+    public static String getImg(int index) {
+        if (index >= 0 && index < SUPPORTED_EXTENSIONS_IMG.length){
+            return SUPPORTED_EXTENSIONS_IMG[index];
+        }else {
+            throw new IndexOutOfBoundsException("Index of bounds: " + index);
+        }
     }
 
-    public static String doc(int i) {
-        //Criando a lista de extensões de imagens
-        List<String> ex = new ArrayList<>();
+    public static final String[] SUPPORTED_EXTENSIONS_DOC = {
+            ".pdf", ".rar", ".docx", ".doc", ".zip", ".docm", ".txt", ".xml",
+            ".xps", ".csv", ".ods", ".xls", ".xlsb", ".xlsx", ".xltm", ".odp",
+            ".ppt", ".pptx", ".rtf", ".odg", ".odt"
+    };
 
-        ex.add(".pdf");
-        ex.add(".rar");
-        ex.add(".docx");
-        ex.add(".doc");
-        ex.add(".zip");
-        ex.add(".docm");
-        ex.add(".txt");
-        ex.add(".xml");
-        ex.add(".xps");
-        ex.add(".csv");
-        ex.add(".ods");
-        ex.add(".xls");
-        ex.add(".xlsb");
-        ex.add(".xlsx");
-        ex.add(".xltm");
-        ex.add(".odp");
-        ex.add(".ppt");
-        ex.add(".pptx");
-        ex.add(".rtf");
-        ex.add(".odg");
-        ex.add(".odt");
-
-        return ex.get(i);
+    public static String GetDoc(int index) {
+       if (index >= 0 && index < SUPPORTED_EXTENSIONS_DOC.length){
+           return SUPPORTED_EXTENSIONS_DOC[index];
+       } else {
+           throw new IndexOutOfBoundsException("Index of bounds: " + index);
+       }
     }
 
-    public static String vid(int i) {
-        //Criando a lista de extensões de imagens
-        List<String> ex = new ArrayList<>();
+    public static final String[] SUPPORTED_EXTENSIONS_VID = {
+            ".mp4",".mov",".avi",".mpg",".mkv",".flv",".wmv",".mpeg"
+    };
 
-        ex.add(".mp4");
-        ex.add(".mov");
-        ex.add(".avi");
-        ex.add(".mpg");
-        ex.add(".mkv");
-        ex.add(".flv");
-        ex.add(".wmv");
-        ex.add(".mpeg");
-
-        return ex.get(i);
+    public static String getVid(int index) {
+        if (index >= 0 && index < SUPPORTED_EXTENSIONS_VID.length){
+            return SUPPORTED_EXTENSIONS_VID[index];
+        }else {
+            throw new IndexOutOfBoundsException("Index of bounds" + index);
+        }
     }
 
-    public static String mus(int i) {
-        //Criando a lista de extensões de imagens
-        List<String> ex = new ArrayList<>();
+    public static final String[] SUPPORTED_EXTENSIONS_MUSIC = {
+            ".mp3",".m4a",".wav",".wma",".au"
+    };
 
-        ex.add(".mp3");
-        ex.add(".m4a");
-        ex.add(".wav");
-        ex.add(".wma");
-        ex.add(".au");
-
-        return ex.get(i);
+    public static String getMusic(int index) {
+        if (index >= 0 && index < SUPPORTED_EXTENSIONS_MUSIC.length){
+            return SUPPORTED_EXTENSIONS_MUSIC[index];
+        }else{
+            throw new IndexOutOfBoundsException("Index of bounds: " + index);
+        }
     }
 
-    public static String pro(int i) {
-        //Criando a lista de extensões de imagens
-        List<String> ex = new ArrayList<>();
+    public static final String[] SUPPORTED_EXTENSIONS_PROGRA = {
+            ".exe",".jar",".msi",".iso"
+    };
 
-        ex.add(".exe");
-        ex.add(".jar");
-        ex.add(".msi");
-        ex.add(".iso");
-
-        return ex.get(i);
+    public static String getProgra(int index) {
+        if (index >= 0 && index < SUPPORTED_EXTENSIONS_PROGRA.length){
+            return SUPPORTED_EXTENSIONS_PROGRA[index];
+        }else{
+            throw new IndexOutOfBoundsException("Index of bounds: " + index);
+        }
     }
 }

@@ -13,20 +13,19 @@ public class Files {
     public static int contPrograms = 0;
 
     public static String moveImg() throws InterruptedException {
-        //caminho da pasta de Imagens
-        File path = new File(Names.path);
 
-        //novo caminho
+        File path = new File(Names.path);
         File imagens = new File(Names.path+"\\imagens");
-        if (!imagens.exists()){
+
+        if(!imagens.exists()){
             imagens.mkdir();
         }
 
         File[] archives = path.listFiles();
         //mover apenas imagens
-        for (File archive : archives){
-            for (int i = 0;i<10;i++){
-                if (archive.getName().endsWith(Extension.img(i))){
+        for(File archive : archives){
+            for (int i = 0;i<Extension.SUPPORTED_EXTENSIONS_IMG.length;i++){
+                if(archive.getName().endsWith(Extension.getImg(i))){
                     // verfica se nome e igual, se for ele muda o nome do arquivo
                     if(archive.getName().equals(archive.getName())){
                         contImg++;
@@ -36,14 +35,14 @@ public class Files {
                             System.out.print("Imagem movido com sucesso: ");
                             Colors.greenColor(archive.getName());
                         }
-                    } else { // segundo if (caso a condição do primeiro if não seja satisfeita)
+                    }else { // segundo if (caso a condição do primeiro if não seja satisfeita)
                         contImg++;
                         File caminho = new File(imagens.getPath() + "/" + archive.getName());
                         boolean movido = archive.renameTo(caminho);
-                        if (movido) {
+                        if(movido) {
                             System.out.print("Imagem movido com sucesso: ");
                             Colors.greenColor(archive.getName());
-                        } else {
+                        }else {
                             System.out.println("Não foi possível mover a imagem: " + archive.getName());
                             return null;
                         }
@@ -59,15 +58,15 @@ public class Files {
         File path = new File(Names.path);
         File documentos = new File(Names.path+"\\Documentos");
 
-        if (!documentos.exists()){
+        if(!documentos.exists()){
             documentos.mkdir();
         }
 
         File[] archives = path.listFiles();
 
-        for (File archive : archives){
-            for (int i = 0;i<21;i++){
-                if (archive.getName().endsWith(Extension.doc(i))){
+        for(File archive : archives){
+            for(int i = 0;i<21;i++){
+                if(archive.getName().endsWith(Extension.GetDoc(i))){
                     // verfica se nome e igual, se for ele muda o nome do arquivo
                     if(archive.getName().equals(archive.getName())){
                         contDoc++;
@@ -81,7 +80,7 @@ public class Files {
                         contDoc++;
                         File caminho = new File(documentos.getPath() + "/" + archive.getName());
                         boolean movido = archive.renameTo(caminho);
-                        if (movido){
+                        if(movido){
                             System.out.print("Documento movido com sucesso: ");
                             Colors.blueColor(archive.getName());
                             archive.getName();
@@ -107,8 +106,8 @@ public class Files {
         File[] archives = path.listFiles();
 
         for (File archive : archives){
-            for (int i = 0;i<7;i++){
-                if (archive.getName().endsWith(Extension.vid(i))){
+            for(int i = 0;i<Extension.SUPPORTED_EXTENSIONS_VID.length;i++){
+                if(archive.getName().endsWith(Extension.getVid(i))){
                     // verfica se nome e igual, se for ele muda o nome do arquivo
                     if(archive.getName().equals(archive.getName())){
                         contVid++;
@@ -118,7 +117,7 @@ public class Files {
                             System.out.print("Video movido com sucesso: ");
                             Colors.cyanColor(archive.getName());
                         }
-                    } else {
+                    }else {
                         contVid++;
                         File caminho = new File(documentos.getPath() + "/" + archive.getName());
                         boolean movido = archive.renameTo(caminho);
@@ -141,21 +140,21 @@ public class Files {
         File path = new File(Names.path);
         File musicas = new File(Names.path+"\\Music");
 
-        if (!musicas.exists()){
+        if(!musicas.exists()){
             musicas.mkdir();
         }
 
         File[] archives = path.listFiles();
 
-        for (File archive : archives){
-            for (int i = 0;i<4;i++){
-                if (archive.getName().endsWith(Extension.mus(i))){
+        for(File archive : archives){
+            for(int i = 0;i<Extension.SUPPORTED_EXTENSIONS_MUSIC.length;i++){
+                if(archive.getName().endsWith(Extension.getMusic(i))){
                     // verfica se nome e igual, se for ele muda o nome do arquivo
                     if(archive.getName().equals(archive.getName())){
                         contMusic++;
                         File caminho = new File(musicas.getPath() + "/" + contMusic + "_" + archive.getName());
                         boolean movido = archive.renameTo(caminho);
-                        if (movido){
+                        if(movido){
                             System.out.print("Musica movido com sucesso: ");
                             Colors.redColor(archive.getName());
                         }
@@ -163,7 +162,7 @@ public class Files {
                         contMusic++;
                         File caminho = new File(musicas.getPath() + "/" + archive.getName());
                         boolean movido = archive.renameTo(caminho);
-                        if (movido){
+                        if(movido){
                             System.out.print("Musica movido com sucesso: ");
                             Colors.redColor(archive.getName());
                             archive.getName();
@@ -182,15 +181,15 @@ public class Files {
         File path = new File(Names.path);
         File programas = new File(Names.path+"\\Programas");
 
-        if (!programas.exists()){
+        if(!programas.exists()){
             programas.mkdir();
         }
 
         File[] archives = path.listFiles();
 
-        for (File archive : archives){
-            for (int i = 0;i<3;i++){
-                if (archive.getName().endsWith(Extension.pro(i))){
+        for(File archive : archives){
+            for(int i = 0;i<Extension.SUPPORTED_EXTENSIONS_PROGRA.length;i++){
+                if(archive.getName().endsWith(Extension.getProgra(i))){
                     // verfica se nome e igual, se for ele muda o nome do arquivo
                     if(archive.getName().equals(archive.getName())){
                         contPrograms++;
@@ -204,7 +203,7 @@ public class Files {
                         contPrograms++;
                         File caminho = new File(programas.getPath() + "/" + archive.getName());
                         boolean movido = archive.renameTo(caminho);
-                        if (movido){
+                        if(movido){
                             System.out.print("Programa movido com sucesso: ");
                             Colors.magentaColor(archive.getName());
                             archive.getName();
@@ -252,5 +251,4 @@ public class Files {
             Thread.sleep(3000);
         }
     }
-
 }
