@@ -1,7 +1,6 @@
 package org.example.controller;
 
 import org.example.Colors;
-import org.example.Extension;
 import org.example.Names;
 import java.io.File;
 
@@ -227,11 +226,11 @@ public class Files {
     }
 
     public static void imprimirContagem(){
-        System.out.println("quantidade imagens: " + Files.contImg);
-        System.out.println("quantidade documentos: " + Files.contDoc);
-        System.out.println("quantidade videos: " + Files.contVid);
-        System.out.println("quantidade musicas: " + Files.contMusic);
-        System.out.println("quantidade programas: " + Files.contPrograms);
+        System.out.println("quantidade imagens:............. " + Files.contImg);
+        System.out.println("quantidade documentos:.......... " + Files.contDoc);
+        System.out.println("quantidade videos:.............. " + Files.contVid);
+        System.out.println("quantidade musicas:............. " + Files.contMusic);
+        System.out.println("quantidade programas:........... " + Files.contPrograms);
     }
 
     public static void start() throws InterruptedException {
