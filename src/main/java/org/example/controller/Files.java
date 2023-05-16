@@ -11,7 +11,7 @@ public class Files {
     public static int contMusic = 0;
     public static int contPrograms = 0;
 
-    public static String moveImg() throws InterruptedException {
+    public static String moveImg() {
 
         File path = new File(Names.path);
         File imagens = new File(Names.path+"\\imagens");
