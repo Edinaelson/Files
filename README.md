@@ -3,7 +3,7 @@
 ### **Descrição**📃
 
 o programa organiza os arquivos por extensão, por exemplo, se arquivo termirnar em *.mp3* ele vai
-enviar o arquivo para a pasta imagem, se não houver ele cria e envia.
+enviar o arquivo para a pasta musica, se não houver ele cria e envia.
 
 - [x] Mover imagens.
 - [x] Mover documentos.
