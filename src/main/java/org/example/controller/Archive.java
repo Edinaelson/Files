@@ -1,15 +1,16 @@
 package org.example.controller;
 
-import org.example.Colors;
-import org.example.Names;
+import org.example.color.Colors;
 
 import java.io.File;
-import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import static java.lang.Thread.sleep;
-import static org.example.Colors.ukraine;
+import static org.example.color.Colors.ukraine;
 
-public class Files {
+public class Archive {
     public static int contImg = 0;
     public static int contDoc = 0;
     public static int contVid = 0;
@@ -37,26 +38,19 @@ public class Files {
                     || archive.getName().endsWith(".svg")
                     || archive.getName().endsWith(".gif")
             ) {
-                // verfica se nome e igual, se for ele muda o nome do arquivo
-                if (archive.getName().equals(archive.getName())) {
-                    contImg++;
-                    File caminho = new File(imagens.getPath() + "/" + contImg + "_" + archive.getName());
-                    boolean movido = archive.renameTo(caminho);
-                    if (movido) {
-                        System.out.print("Imagem movido com sucesso: ");
-                        Colors.greenColor(archive.getName());
-                    }
-                } else { // segundo if (caso a condição do primeiro if não seja satisfeita)
-                    contImg++;
+                try {
                     File caminho = new File(imagens.getPath() + "/" + archive.getName());
-                    boolean movido = archive.renameTo(caminho);
-                    if (movido) {
-                        System.out.print("Imagem movido com sucesso: ");
-                        Colors.greenColor(archive.getName());
+                    if (caminho.exists()) {
+                        Files.move(archive.toPath(), caminho.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     } else {
-                        System.out.println("Não foi possível mover a imagem: " + archive.getName());
-                        return null;
+                        Files.move(archive.toPath(), caminho.toPath());
                     }
+                    System.out.print("Imagem movido com sucesso: ");
+                    Colors.greenColor(archive.getName());
+                    contImg++;
+                } catch (IOException e) {
+                    System.out.println("Não foi possivel enviar imagens: " + archive.getName());
+                    e.printStackTrace();
                 }
             }
         }
@@ -64,23 +58,22 @@ public class Files {
     }
 
     public static String moveDocs() {
-        File path = new File(Names.path);
+        java.io.File path = new java.io.File(Names.path);
 
-        File documentos = new File(Names.path + "\\Documentos");
+        java.io.File documentos = new java.io.File(Names.path + "\\Documentos");
         if (!documentos.exists()) {
             documentos.mkdir();
         }
 
 
-        File[] archives = path.listFiles();
+        java.io.File[] archives = path.listFiles();
 
 
-        for (File archive : archives) {
+        for (java.io.File archive : archives) {
             if (archive.getName().endsWith(".pdf")
                     || archive.getName().endsWith(".rar")
                     || archive.getName().endsWith(".docx")
                     || archive.getName().endsWith(".doc")
-                    || archive.getName().endsWith(".pdf")
                     || archive.getName().endsWith(".zip")
                     || archive.getName().endsWith(".docm")
                     || archive.getName().endsWith(".txt")
@@ -103,7 +96,7 @@ public class Files {
             ) {
                 // verfica se nome e igual, se for ele muda o nome do arquivo
                 contDoc++;
-                File caminho = new File(documentos.getPath() + "/" + archive.getName());
+                java.io.File caminho = new java.io.File(documentos.getPath() + "/" + archive.getName());
                 boolean movido = archive.renameTo(caminho);
                 if (movido) {
                     System.out.print("Documento movido com sucesso: ");
@@ -119,16 +112,16 @@ public class Files {
     }
 
     public static String moveVides() {
-        File path = new File(Names.path);
+        java.io.File path = new java.io.File(Names.path);
 
-        File documentos = new File(Names.path + "\\Videos");
+        java.io.File documentos = new java.io.File(Names.path + "\\Videos");
         if (!documentos.exists()) {
             documentos.mkdir();
         }
 
-        File[] archives = path.listFiles();
+        java.io.File[] archives = path.listFiles();
 
-        for (File archive : archives) {
+        for (java.io.File archive : archives) {
             if (archive.getName().endsWith(".mp4")
                     || archive.getName().endsWith(".mov")
                     || archive.getName().endsWith(".avi")
@@ -139,33 +132,33 @@ public class Files {
                     || archive.getName().endsWith(".mpeg")
             ) {
                 // verfica se nome e igual, se for ele muda o nome do arquivo
-                    contVid++;
-                    File caminho = new File(documentos.getPath() + "/" + archive.getName());
-                    boolean movido = archive.renameTo(caminho);
-                    if (movido) {
-                        System.out.print("Video movido com sucesso: ");
-                        Colors.cyanColor(archive.getName());
-                        archive.getName();
-                    } else {
-                        System.out.println("Não foi possivel mover video: " + archive.getName());
-                        return null;
-                    }
+                contVid++;
+                java.io.File caminho = new java.io.File(documentos.getPath() + "/" + archive.getName());
+                boolean movido = archive.renameTo(caminho);
+                if (movido) {
+                    System.out.print("Video movido com sucesso: ");
+                    Colors.cyanColor(archive.getName());
+                    archive.getName();
+                } else {
+                    System.out.println("Não foi possivel mover video: " + archive.getName());
+                    return null;
                 }
             }
+        }
         return null;
     }
 
     public static String moveMusic() {
-        File path = new File(Names.path);
+        java.io.File path = new java.io.File(Names.path);
 
-        File musicas = new File(Names.path + "\\Music");
+        java.io.File musicas = new java.io.File(Names.path + "\\Music");
         if (!musicas.exists()) {
             musicas.mkdir();
         }
 
-        File[] archives = path.listFiles();
+        java.io.File[] archives = path.listFiles();
 
-        for (File archive : archives) {
+        for (java.io.File archive : archives) {
             if (archive.getName().endsWith(".mp3")
                     || archive.getName().endsWith(".m4a")
                     || archive.getName().endsWith(".wav")
@@ -173,33 +166,33 @@ public class Files {
                     || archive.getName().endsWith(".au")
             ) {
                 // verfica se nome e igual, se for ele muda o nome do arquivo
-                    contMusic++;
-                    File caminho = new File(musicas.getPath() + "/" + archive.getName());
-                    boolean movido = archive.renameTo(caminho);
-                    if (movido) {
-                        System.out.print("Musica movido com sucesso: ");
-                        Colors.redColor(archive.getName());
-                        archive.getName();
-                    } else {
-                        System.out.println("Não foi possivel mover musica: " + archive.getName());
-                        return null;
-                    }
+                contMusic++;
+                java.io.File caminho = new java.io.File(musicas.getPath() + "/" + archive.getName());
+                boolean movido = archive.renameTo(caminho);
+                if (movido) {
+                    System.out.print("Musica movido com sucesso: ");
+                    Colors.redColor(archive.getName());
+                    archive.getName();
+                } else {
+                    System.out.println("Não foi possivel mover musica: " + archive.getName());
+                    return null;
                 }
             }
+        }
         return null;
     }
 
     public static String moveProgram() {
-        File path = new File(Names.path);
+        java.io.File path = new java.io.File(Names.path);
 
-        File programas = new File(Names.path + "\\Programas");
+        java.io.File programas = new java.io.File(Names.path + "\\Programas");
         if (!programas.exists()) {
             programas.mkdir();
         }
 
-        File[] archives = path.listFiles();
+        java.io.File[] archives = path.listFiles();
 
-        for (File archive : archives) {
+        for (java.io.File archive : archives) {
 
             if (archive.getName().endsWith(".jar")
                     || archive.getName().endsWith(".msi")
@@ -207,19 +200,19 @@ public class Files {
                     || archive.getName().endsWith(".exe")
             ) {
                 // verfica se nome e igual, se for ele muda o nome do arquivo
-                    contPrograms++;
-                    File caminho = new File(programas.getPath() + "/" + archive.getName());
-                    boolean movido = archive.renameTo(caminho);
-                    if (movido) {
-                        System.out.print("Programa movido com sucesso: ");
-                        Colors.magentaColor(archive.getName());
-                        archive.getName();
-                    } else {
-                        System.out.println("Não foi possivel mover programa: " + archive.getName());
-                        return null;
-                    }
+                contPrograms++;
+                java.io.File caminho = new java.io.File(programas.getPath() + "/" + archive.getName());
+                boolean movido = archive.renameTo(caminho);
+                if (movido) {
+                    System.out.print("Programa movido com sucesso: ");
+                    Colors.magentaColor(archive.getName());
+                    archive.getName();
+                } else {
+                    System.out.println("Não foi possivel mover programa: " + archive.getName());
+                    return null;
                 }
             }
+        }
         return null;
     }
 
