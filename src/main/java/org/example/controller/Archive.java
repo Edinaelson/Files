@@ -17,7 +17,7 @@ public class Archive {
     public static int contMusic = 0;
     public static int contPrograms = 0;
 
-    public static String moveImg() throws InterruptedException {
+    public static String moveImg(){
         //caminho da pasta de Imagens
         File path = new File(Names.path);
 
@@ -49,7 +49,7 @@ public class Archive {
                     Colors.greenColor(archive.getName());
                     contImg++;
                 } catch (IOException e) {
-                    System.out.println("Não foi possivel enviar imagens: " + archive.getName());
+                    Colors.redColor("Não foi possivel enviar imagem: " + archive.getName());
                     e.printStackTrace();
                 }
             }
@@ -58,18 +58,16 @@ public class Archive {
     }
 
     public static String moveDocs() {
-        java.io.File path = new java.io.File(Names.path);
+        File path = new File(Names.path);
 
-        java.io.File documentos = new java.io.File(Names.path + "\\Documentos");
+        File documentos = new File(Names.path + "\\Documentos");
         if (!documentos.exists()) {
             documentos.mkdir();
         }
 
+        File[] archives = path.listFiles();
 
-        java.io.File[] archives = path.listFiles();
-
-
-        for (java.io.File archive : archives) {
+        for (File archive : archives) {
             if (archive.getName().endsWith(".pdf")
                     || archive.getName().endsWith(".rar")
                     || archive.getName().endsWith(".docx")
@@ -94,17 +92,19 @@ public class Archive {
                     || archive.getName().endsWith(".odt")
 
             ) {
-                // verfica se nome e igual, se for ele muda o nome do arquivo
-                contDoc++;
-                java.io.File caminho = new java.io.File(documentos.getPath() + "/" + archive.getName());
-                boolean movido = archive.renameTo(caminho);
-                if (movido) {
+                try {
+                    File caminho = new File(documentos.getPath() + "/" + archive.getName());
+                    if (caminho.exists()) {
+                        Files.move(archive.toPath(), caminho.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } else {
+                        Files.move(archive.toPath(), caminho.toPath());
+                    }
                     System.out.print("Documento movido com sucesso: ");
                     Colors.blueColor(archive.getName());
-                    archive.getName();
-                } else {
-                    System.out.println("Não foi possivel mover documento: " + archive.getName());
-                    return null;
+                    contDoc++;
+                } catch (IOException e) {
+                    Colors.redColor("Não foi possivel enviar documento: " + archive.getName());
+                    e.printStackTrace();
                 }
             }
         }
@@ -112,16 +112,16 @@ public class Archive {
     }
 
     public static String moveVides() {
-        java.io.File path = new java.io.File(Names.path);
+        File path = new File(Names.path);
 
-        java.io.File documentos = new java.io.File(Names.path + "\\Videos");
-        if (!documentos.exists()) {
-            documentos.mkdir();
+        File videos = new File(Names.path + "\\Videos");
+        if (!videos.exists()) {
+            videos.mkdir();
         }
 
-        java.io.File[] archives = path.listFiles();
+        File[] archives = path.listFiles();
 
-        for (java.io.File archive : archives) {
+        for (File archive : archives) {
             if (archive.getName().endsWith(".mp4")
                     || archive.getName().endsWith(".mov")
                     || archive.getName().endsWith(".avi")
@@ -131,17 +131,19 @@ public class Archive {
                     || archive.getName().endsWith(".wmv")
                     || archive.getName().endsWith(".mpeg")
             ) {
-                // verfica se nome e igual, se for ele muda o nome do arquivo
-                contVid++;
-                java.io.File caminho = new java.io.File(documentos.getPath() + "/" + archive.getName());
-                boolean movido = archive.renameTo(caminho);
-                if (movido) {
+                try {
+                    File caminho = new File(videos.getPath() + "/" + archive.getName());
+                    if (caminho.exists()) {
+                        Files.move(archive.toPath(), caminho.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } else {
+                        Files.move(archive.toPath(), caminho.toPath());
+                    }
                     System.out.print("Video movido com sucesso: ");
                     Colors.cyanColor(archive.getName());
-                    archive.getName();
-                } else {
-                    System.out.println("Não foi possivel mover video: " + archive.getName());
-                    return null;
+                    contVid++;
+                } catch (IOException e) {
+                    Colors.redColor("Não foi possivel enviar video: " + archive.getName());
+                    e.printStackTrace();
                 }
             }
         }
@@ -149,33 +151,35 @@ public class Archive {
     }
 
     public static String moveMusic() {
-        java.io.File path = new java.io.File(Names.path);
+        File path = new File(Names.path);
 
-        java.io.File musicas = new java.io.File(Names.path + "\\Music");
+        File musicas = new File(Names.path + "\\Music");
         if (!musicas.exists()) {
             musicas.mkdir();
         }
 
-        java.io.File[] archives = path.listFiles();
+        File[] archives = path.listFiles();
 
-        for (java.io.File archive : archives) {
+        for (File archive : archives) {
             if (archive.getName().endsWith(".mp3")
                     || archive.getName().endsWith(".m4a")
                     || archive.getName().endsWith(".wav")
                     || archive.getName().endsWith(".wma")
                     || archive.getName().endsWith(".au")
             ) {
-                // verfica se nome e igual, se for ele muda o nome do arquivo
-                contMusic++;
-                java.io.File caminho = new java.io.File(musicas.getPath() + "/" + archive.getName());
-                boolean movido = archive.renameTo(caminho);
-                if (movido) {
-                    System.out.print("Musica movido com sucesso: ");
-                    Colors.redColor(archive.getName());
-                    archive.getName();
-                } else {
-                    System.out.println("Não foi possivel mover musica: " + archive.getName());
-                    return null;
+                try {
+                    File caminho = new File(musicas.getPath() + "/" + archive.getName());
+                    if (caminho.exists()) {
+                        Files.move(archive.toPath(), caminho.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } else {
+                        Files.move(archive.toPath(), caminho.toPath());
+                    }
+                    System.out.print("musica movido com sucesso: ");
+                    Colors.magentaColor(archive.getName());
+                    contMusic++;
+                } catch (IOException e) {
+                    Colors.redColor("Não foi possivel enviar musica: " + archive.getName());
+                    e.printStackTrace();
                 }
             }
         }
@@ -183,33 +187,35 @@ public class Archive {
     }
 
     public static String moveProgram() {
-        java.io.File path = new java.io.File(Names.path);
+        File path = new File(Names.path);
 
-        java.io.File programas = new java.io.File(Names.path + "\\Programas");
+        File programas = new File(Names.path + "\\Programas");
         if (!programas.exists()) {
             programas.mkdir();
         }
 
-        java.io.File[] archives = path.listFiles();
+        File[] archives = path.listFiles();
 
-        for (java.io.File archive : archives) {
+        for (File archive : archives) {
 
             if (archive.getName().endsWith(".jar")
                     || archive.getName().endsWith(".msi")
                     || archive.getName().endsWith(".iso")
                     || archive.getName().endsWith(".exe")
             ) {
-                // verfica se nome e igual, se for ele muda o nome do arquivo
-                contPrograms++;
-                java.io.File caminho = new java.io.File(programas.getPath() + "/" + archive.getName());
-                boolean movido = archive.renameTo(caminho);
-                if (movido) {
-                    System.out.print("Programa movido com sucesso: ");
+                try {
+                    File caminho = new File(programas.getPath() + "/" + archive.getName());
+                    if (caminho.exists()) {
+                        Files.move(archive.toPath(), caminho.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } else {
+                        Files.move(archive.toPath(), caminho.toPath());
+                    }
+                    System.out.print("programa movido com sucesso: ");
                     Colors.magentaColor(archive.getName());
-                    archive.getName();
-                } else {
-                    System.out.println("Não foi possivel mover programa: " + archive.getName());
-                    return null;
+                    contPrograms++;
+                } catch (IOException e) {
+                    Colors.redColor("Não foi possivel enviar programa: " + archive.getName());
+                    e.printStackTrace();
                 }
             }
         }
@@ -232,7 +238,7 @@ public class Archive {
         System.out.println("quantidade programas: " + contPrograms);
     }
 
-    public static void start() throws InterruptedException {
+    public static void start() {
         moveImg();
         moveDocs();
         moveVides();
